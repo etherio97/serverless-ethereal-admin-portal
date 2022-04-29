@@ -10,8 +10,8 @@ class GithubService {
     return this._sendApi('GET', ['users', user, 'repos'], null, params);
   }
   
-  createRepo({ name, description, homepage, private }) {
-    return this._sendApi('POST', ['user', 'repos'], { name, description, homepage, private });
+  createRepo(data) {
+    return this._sendApi('POST', ['user', 'repos'], data);
   }
   
   deleteRepo(user, repo) {
