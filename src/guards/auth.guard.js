@@ -3,7 +3,7 @@ const service = require('../services/firebase.service');
 class AuthGuard {
   canActivate() {
     return async (req, res, next) => {
-      if (!('' in req.headers) || !req.headers.authorization) {
+      if (!('authorization' in req.headers) || !req.headers.authorization) {
         return res.status(401).json({
           error: 'unauthorized',
           message: 'required bearer token',
