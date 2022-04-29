@@ -42,7 +42,7 @@ app.get('/github/*', async (req, res) => {
     const params = req.query;
     const path = originalUrl.replace('/github', '');
     delete params.secret;
-    res.json(await service._sendApi('GET', path, null, params));
+    res.json(await service._sendApi('GET', [path], null, params));
   } catch (e) {
     const response = e.response || {};
     res.status(response.status || 500);
