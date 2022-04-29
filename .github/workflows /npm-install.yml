@@ -1,0 +1,22 @@
+name: NPM Install
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        required: true
+jobs:
+  npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.16.0
+      - run: npm install
+      - run: npm install --save ${{ github.event.inputs.package }}
+      - run: |
+          git config --local user.name 'Github Action'
+          git config --local user.email '50423290+etherio97@users.noreply.github.com'
+          git add --all
+          git commit -m 'Installed Package'
+          git push origin master
