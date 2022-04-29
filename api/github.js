@@ -62,6 +62,29 @@ app.get('/github/:user/:repo/workflows/:id', async (req, res) => {
   }
 });
 
+app.put('/github/:user/:repo/workflows/:id/enable', async (req, res) => {
+  try {
+    const { user, repo, id } = req.params;
+    res.json(await service.enableWorkflow(user, repo, id));
+  } catch (e) {
+    const response = e.response || {};
+    res.status(response.status || 500);
+    res.json(response.data || { error: e.message });
+  }
+});
+
+app.put('/github/:user/:repo/workflows/:id/disable', async (req, res) => {
+  try {
+    const { user, repo, id } = req.params;
+    res.json(await service.disableWorkflow(user, repo, id));
+  } catch (e) {
+    const response = e.response || {};
+    res.status(response.status || 500);
+    res.json(response.data || { error: e.message });
+  }
+});
+
+
 app.post('/github/:user/:repo/workflows/:id/dispatches', async (req, res) => {
   try {
     const { ref, inputs } = req.body;
