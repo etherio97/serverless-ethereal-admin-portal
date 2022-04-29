@@ -25,7 +25,7 @@ app.get('/firebase/slient-check', async (req, res) => {
   }
 });
 
-app.post('/logout', (req, res) => {
+app.post('/firebase/logout', (req, res) => {
   res.setHeader('set-cookie', `${COOKIE_NAME}=; Expires=Thu, Jan 01 1970 00:00:00 UTC; Secure; HttpOnly`);
   res.redirect('/login.html');
   res.end();
