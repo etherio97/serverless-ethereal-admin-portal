@@ -1,5 +1,4 @@
 const app = require('../src/app');
-const guard = require('../src/guards/auth.guard');
 const service = require('../src/services/github.service');
 const guard = require('../src/guards/auth.guard');
 
