@@ -3,6 +3,10 @@
     {
       "source": "/heroku/(.*)",
       "destination": "/api/heroku"
+    },
+    {
+      "source": "/firebase/(.*)",
+      "destination": "/api/firebase"
     }
   ]
 }
