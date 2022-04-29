@@ -1,5 +1,5 @@
 const app = require('../src/app');
-const service = require('../src/heroku.service');
+const service = require('../src/services/heroku.service');
 
 app.get('/apps', async (req, res) => {
   res.json(await service.getApps());
