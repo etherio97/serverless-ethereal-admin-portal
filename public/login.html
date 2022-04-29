@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Log In</title>
+  <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/milligram@1.4.1" />
+</head>
+
+<body>
+  <div class="container">
+    <h2>Log In</h2>
+    <p>Please sign in to your account</p>
+    <form method="POST" action="/firebase/sign-in" target="login-frame">
+      <fieldset>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter your email" required />
+      </fieldset>
+      <fieldset>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter your password" required />
+      </fieldset>
+      <button type="submit">Sign In</button>
+      <hr />
+      <a href="/firebase/slient-check">
+        <button type="button">Check</button>
+      </a>
+    </form>
+    <iframe src="" frameborder="0" name="login-frame"></iframe>
+  </div>
+</body>
+
+</html>
