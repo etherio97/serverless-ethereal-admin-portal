@@ -10,6 +10,8 @@ app.use(helmet());
 
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: true }));
+
 app.use(cookie());
 
 module.exports = app;
