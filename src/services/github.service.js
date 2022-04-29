@@ -20,7 +20,8 @@ class GithubService {
   }
 
   _sendApi(method, path = [], data = null, params = {}) {
-    const url = new URL(GITHUB_API + '/' + path.join('/'));
+    const url = new URL(GITHUB_API);
+    url.pathname = path.join('/');
     for (let key in params) {
       url.searchParams.append(key, params[key]);
     }
@@ -30,7 +31,6 @@ class GithubService {
       data,
       headers,
     };
-    console.log(url.toString());
     return axios(options).then((res) => res.data);
   }
 }
