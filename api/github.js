@@ -188,11 +188,11 @@ app.post('/github/:user/:repo/runs/:id/cancel', async (req, res) => {
   }
 });
 
-app.get('/github/:user/:repo/jobs/:id', async (req, res) => {
+app.get('/github/:user/:repo/runs/:id/jobs', async (req, res) => {
   try {
     const { user, repo, id } = req.params;
     const params = req.query;
-    res.json(await service.getJob(user, repo, id, params));
+    res.json(await service.getRunJobs(user, repo, id, params));
   } catch (e) {
     const response = e.response || {};
     res.status(response.status || 500);
