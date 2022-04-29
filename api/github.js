@@ -65,7 +65,8 @@ app.get('/github/:user/:repo/workflows/:id', async (req, res) => {
 app.put('/github/:user/:repo/workflows/:id/enable', async (req, res) => {
   try {
     const { user, repo, id } = req.params;
-    res.json(await service.enableWorkflow(user, repo, id));
+    await service.enableWorkflow(user, repo, id);
+    res.status(204).end();
   } catch (e) {
     const response = e.response || {};
     res.status(response.status || 500);
@@ -76,7 +77,8 @@ app.put('/github/:user/:repo/workflows/:id/enable', async (req, res) => {
 app.put('/github/:user/:repo/workflows/:id/disable', async (req, res) => {
   try {
     const { user, repo, id } = req.params;
-    res.json(await service.disableWorkflow(user, repo, id));
+    await service.disableWorkflow(user, repo, id);
+    res.status(204).end();
   } catch (e) {
     const response = e.response || {};
     res.status(response.status || 500);
