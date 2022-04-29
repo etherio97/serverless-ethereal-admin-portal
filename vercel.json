@@ -8,6 +8,10 @@
     {
       "source": "/firebase/(.*)",
       "destination": "/api/firebase"
+    },
+    {
+      "source": "/vercel/(.*)",
+      "destination": "/api/vercel"
     }
   ]
 }
