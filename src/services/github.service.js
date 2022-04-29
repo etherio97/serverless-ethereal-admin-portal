@@ -30,6 +30,7 @@ class GithubService {
       data,
       headers,
     };
+    console.log(url.toString());
     return axios(options).then((res) => res.data);
   }
 }
