@@ -1,5 +1,8 @@
 const app = require('../src/app');
 const service = require('../src/services/vercel.service');
+const guard = require('../src/guards/auth.guard');
+
+app.use(guard.canActivate());
 
 app.get('/vercel/domains', async (req, res) => {
   try {

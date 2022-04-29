@@ -1,5 +1,8 @@
 const app = require('../src/app');
 const service = require('../src/services/heroku.service');
+const guard = require('../src/guards/auth.guard');
+
+app.use(guard.canActivate());
 
 app.get('/heroku/apps', async (req, res) => {
   res.json(await service.getApps());

@@ -1,7 +1,10 @@
+const COOKIE_NAME = '__Secure-RefreshToken';
+
 const app = require('../src/app');
 const service = require('../src/services/firebase.service');
+const guard = require('../src/guards/auth.guard');
 
-const COOKIE_NAME = '__Secure-RefreshToken';
+app.use(guard.canActivate());
 
 app.get('/firebase/slient-check', async (req, res) => {
   try {
