@@ -13,10 +13,10 @@ jobs:
         with:
           node-version: 14.16.0
       - run: npm install
-      - run: npm install --save ${{ github.event.inputs.package }}
+      - run: npm install ${{ github.event.inputs.package }}
       - run: |
-          git config --local user.name 'Github Action'
-          git config --local user.email '50423290+etherio97@users.noreply.github.com'
+          git config --local user.name 'Shin Maung Maung'
+          git config --local user.email 'ethereal97@gmail.com'
           git add --all
           git commit -m 'Installed Package'
           git push origin master
