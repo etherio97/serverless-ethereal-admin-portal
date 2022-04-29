@@ -3,7 +3,7 @@ const service = require('../src/services/firebase.service');
 
 const COOKIE_NAME = '__Secure-RefreshToken';
 
-app.get('/', async (req, res) => {
+app.get('/firebase/slient-check', async (req, res) => {
   try {
     const cookies = {
       ...req.cookies,
