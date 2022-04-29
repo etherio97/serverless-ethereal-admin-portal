@@ -1,3 +1,8 @@
 {
-  "rewrites": []
+  "rewrites": [
+    {
+      "source": "/heroku/(.*)",
+      "destination": "/api/heroku"
+    }
+  ]
 }
