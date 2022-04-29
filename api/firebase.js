@@ -9,9 +9,15 @@ app.get('/firebase/slient-check', async (req, res) => {
       ...req.cookies,
       ...req.signedCookies,
     };
-    console.log(cookies);
     const refreshToken = cookies[COOKIE_NAME];
-    res.send('ok');
+    if (refreshToken) {
+      const credential = await service.getIdToken(refreshToken);
+      res.json(credential);
+    } else {
+      res.status(403).json({
+        error: 'Forbidden',
+      });
+    }
   } catch(e) {
     const response = e.response || {};
     res.status(response.status || 500);
