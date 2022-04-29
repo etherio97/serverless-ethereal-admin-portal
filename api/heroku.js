@@ -1,12 +1,16 @@
-const express = require('express');
-const app = express();
+const app = require('../src/app');
+const service = require('../src/heroku.service');
 
-app.use(express.json());
+app.get('/apps', async (req, res) => {
+  res.json(await service.getApps());
+});
 
-app.get('*', (req, res) => {
-  res.json({
-    url: req.originalUrl,
-  });
+app.get('/apps/:id', async (req, res) => {
+  res.json(await service.getApp(req.params.id));
+});
+
+app.get('/app-state', async (req, res) => {
+  res.json(await service.getAppState(req.query.apps || ''));
 });
 
 module.exports = app;
