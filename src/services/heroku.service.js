@@ -16,7 +16,7 @@ class HerokuService {
   }
 
   getAppState(apps) {
-    return axios.post([HEROKU_BOARD, 'app-state'].join('/'), data, { headers })
+    return axios.post([HEROKU_BOARD, 'app-state'].join('/'), { apps }, { headers })
       .then((res) => res.data);
   }
 
