@@ -12,6 +12,10 @@
     {
       "source": "/vercel/(.*)",
       "destination": "/api/vercel"
+    },
+    {
+      "source": "/github/(.*)",
+      "destination": "/api/github"
     }
   ]
 }
