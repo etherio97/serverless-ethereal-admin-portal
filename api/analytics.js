@@ -30,6 +30,7 @@ const getIpDetails = (ip) =>
   }));
   
 app.all('*', async (req, res) => {
+  console.log(req.headers['x-forwarded-for']);
   let ua = req.headers['user-agent'];
   let ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim();
   let dev = new UAParser(ua);
