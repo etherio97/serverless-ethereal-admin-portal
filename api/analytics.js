@@ -38,7 +38,7 @@ app.all('*', async (req, res) => {
   let text = [];
   let { model, type } = dev.getDevice();
   text.push('Someone was trying to access from ',
-    '```', ip, '``` in ', info.org, ' at ',
+    '```', ip, '```, ', info.org, ' in ',
     '**', info.city, ' (', info.country, ')** ',
   );
     if (!['console', 'embeded'].includes(type)) {
