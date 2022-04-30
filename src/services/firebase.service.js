@@ -37,22 +37,29 @@ class FirebaseService {
     email,
     password,
     displayName,
-    photoURL,
+    photoUrl,
     deleteAttribute,
   }) {
-    return this._sendApi(
-      GOOGLE_IDENTITYTOOLKIT,
-      'v1/accounts:signInWithPassword',
-      {
-        idToken,
-        email,
-        password,
-        displayName,
-        photoURL,
-        deleteAttribute,
-        returnSecureToken: true,
-      }
-    );
+    return this._sendApi(GOOGLE_IDENTITYTOOLKIT, 'v1/accounts:update', {
+      idToken,
+      email,
+      password,
+      displayName,
+      photoUrl,
+      deleteAttribute,
+      returnSecureToken: true,
+    });
+  }
+
+  sendResetPassword(email) {
+    return this.sendOobCode('PASSWORD_RESET', email);
+  }
+
+  sendOobCode(requestType, email) {
+    return this._sendApi(GOOGLE_IDENTITYTOOLKIT, 'v1/accounts:sendOobCode', {
+      requestType,
+      email,
+    });
   }
 
   getIdToken(refresh_token) {

@@ -47,19 +47,61 @@ app.post('/firebase/token', async (req, res) => {
 
 app.post('/firebase/update', guard.canActivate(), async (req, res) => {
   try {
-    const idToken = req.idToken;
-    const { displayName, photoURL, deleteAttribute } = req.body;
-    const data = { idToken };
-    if (displayName) {
-      data.displayName = displayName;
-    }
-    if (photoURL) {
-      data.photoURL = photoURL;
-    }
-    if (deleteAttribute) {
-      data.deleteAttribute = deleteAttribute;
-    }
-    res.json(await service.updateUser(data));
+    const { idToken } = req.auth;
+    const { displayName, photoUrl, deleteAttribute } = req.body;
+    res.json(
+      await service.updateUser({
+        idToken,
+        displayName,
+        photoUrl,
+        deleteAttribute,
+      })
+    );
+  } catch (e) {
+    const response = e.response || {};
+    res.status(response.status || 500);
+    res.json(response.data || { error: e.message });
+  }
+});
+
+app.post('/firebase/set-password', guard.canActivate(), async (req, res) => {
+  try {
+    const { idToken } = req.auth;
+    const { password } = req.body;
+    res.json(
+      await service.updateUser({
+        idToken,
+        password,
+      })
+    );
+  } catch (e) {
+    const response = e.response || {};
+    res.status(response.status || 500);
+    res.json(response.data || { error: e.message });
+  }
+});
+
+app.post('/firebase/set-email', guard.canActivate(), async (req, res) => {
+  try {
+    const { idToken } = req.auth;
+    const { email } = req.body;
+    res.json(
+      await service.updateUser({
+        idToken,
+        email,
+      })
+    );
+  } catch (e) {
+    const response = e.response || {};
+    res.status(response.status || 500);
+    res.json(response.data || { error: e.message });
+  }
+});
+
+app.post('/firebase/reset-password', async (req, res) => {
+  try {
+    const { email } = req.body;
+    res.json(await service.sendResetPassword(email));
   } catch (e) {
     const response = e.response || {};
     res.status(response.status || 500);
