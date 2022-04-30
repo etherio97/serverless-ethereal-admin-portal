@@ -29,7 +29,7 @@ const getIpDetails = (ip) =>
     timezone: null
   }));
 
-app.get(async (req, res) => {
+app.all('*', async (req, res) => {
   let ua = req.headers['user-agent'];
   let ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim();
   let dev = new UAParser(ua);
