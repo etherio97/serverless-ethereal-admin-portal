@@ -1,4 +1,5 @@
 const service = require('../services/firebase.service');
+const { verify, decode } = require('../utils/helpers');
 
 class AuthGuard {
   canActivate() {
@@ -14,7 +15,11 @@ class AuthGuard {
         });
       }
       try {
-        auth.currentUser = await service.getUserData(auth.idToken);
+        if (!verify(auth.idToken)) {
+          return res.status(400).json({ error: 'Invalid ID Token' });
+        }
+        auth.currentUser = decode(auth.idToken);
+        // auth.currentUser = await service.getUserData(auth.idToken);
         next();
       } catch (e) {
         const response = e.response || {};

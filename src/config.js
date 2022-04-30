@@ -4,6 +4,8 @@ const {
   GITHUB_SECRET,
   CLOUDFLARE_SECRET,
   FIREBASE_API_KEY,
+  FIREBASE_PUBLIC_KEY,
+  FIREBASE_PRIVATE_KEY
 } = process.env;
 
 const HEROKU_API = 'https://api.heroku.com';
@@ -20,12 +22,16 @@ const GOOGLE_IDENTITYTOOLKIT = 'https://identitytoolkit.googleapis.com';
 
 const GOOGLE_SECURETOKEN = 'https://securetoken.googleapis.com';
 
+const JWT_ALGORITHM = "RSA-SHA256"
+
 module.exports = {
   HEROKU_SECRET,
   VERCEL_SECRET,
   GITHUB_SECRET,
   CLOUDFLARE_SECRET,
   FIREBASE_API_KEY,
+  FIREBASE_PUBLIC_KEY,
+  FIREBASE_PRIVATE_KEY
   HEROKU_API,
   HEROKU_BOARD,
   VERCEL_API,
