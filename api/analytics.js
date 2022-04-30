@@ -36,17 +36,16 @@ app.all('*', async (req, res) => {
   let info = await getIpDetails(ip);
   let text = [];
   let { model, type } = dev.getDevice();
-  text.push(
-    'Someone try to access ```', req.originalUrl,
-    '``` ', 'from ```', ip, '``` (', info.org, ')',
-    ' in ', info.city, ', ', info.country, '. '
-  );
+  text.push('Someone is trying to access ```', req.originalUrl, '``` ');
+  
   if (!['console', 'embeded'].includes(type)) {
     let os = dev.getOS();
-    text.push(
-      ' on ', dev.vendor, ' ', os.name, 'v', os.version
-    );
+    text.push('by using ', dev.vendor, ' ', os.name, ' version ', os.version);
   }
+  text.push(
+    'from ip: ```', ip, '``` (```', info.org, '```)',
+    ' at **', info.city, '**, **', info.country, '** ',
+  );
   await reportTo(text.join(''));
   res.redirect('https://google.com');
   res.end();
