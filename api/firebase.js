@@ -4,7 +4,7 @@ const app = require('../src/app');
 const service = require('../src/services/firebase.service');
 const guard = require('../src/guards/auth.guard');
 
-app.post('/firebase/sign-in', async (req, res) => {
+app.post('/firebase/auth', async (req, res) => {
   try {
     const { email, password } = req.body;
     const credential = await service.signInWithEmailAndPassword(
@@ -23,7 +23,7 @@ app.post('/firebase/sign-in', async (req, res) => {
   }
 });
 
-app.post('/firebase/account', async (req, res) => {
+app.post('/firebase/verify', async (req, res) => {
   try {
     const { idToken } = req.body;
     res.json(await service.getUserData(idToken));
@@ -45,7 +45,7 @@ app.post('/firebase/token', async (req, res) => {
   }
 });
 
-app.post('/firebase/update', guard.canActivate(), async (req, res) => {
+app.post('/firebase/update:profile', guard.canActivate(), async (req, res) => {
   try {
     const { idToken } = req.auth;
     const { displayName, photoUrl, deleteAttribute } = req.body;
@@ -64,7 +64,7 @@ app.post('/firebase/update', guard.canActivate(), async (req, res) => {
   }
 });
 
-app.post('/firebase/set-password', guard.canActivate(), async (req, res) => {
+app.post('/firebase/update:password', guard.canActivate(), async (req, res) => {
   try {
     const { idToken } = req.auth;
     const { password } = req.body;
@@ -81,7 +81,7 @@ app.post('/firebase/set-password', guard.canActivate(), async (req, res) => {
   }
 });
 
-app.post('/firebase/set-email', guard.canActivate(), async (req, res) => {
+app.post('/firebase/update:email', guard.canActivate(), async (req, res) => {
   try {
     const { idToken } = req.auth;
     const { email } = req.body;
