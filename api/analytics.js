@@ -38,14 +38,13 @@ app.all('*', async (req, res) => {
   let text = [];
   let { model, type } = dev.getDevice();
   text.push('Someone was trying to access from ',
-    '```', ip, '``` / ', info.org, ' / ',
-    '**', info.city, ', ', info.country, '** ',
+    '```', ip, '``` in ', info.org, ' at ',
+    '**', info.city, ' (', info.country, ')** ',
   );
     if (!['console', 'embeded'].includes(type)) {
     let os = dev.getOS();
     text.push(
-      'on device ', dev.vendor, ' ```', 
-      os.name, '``` version ```', os.version, '```.'
+      'on ```', os.vendor, ' ', os.name, '``` version ```', os.version, '```.'
     );
   }
   await reportTo(text.join(''));
