@@ -39,11 +39,12 @@ app.all('*', async (req, res) => {
   text.push(
     'Someone try to access ```', req.originalUrl,
     '``` ', 'from ```', ip, '``` (', info.org, ')',
-    ' from ', info.city, '/ ', info.country,
+    ' in ', info.city, ', ', info.country, '. '
   );
   if (!['console', 'embeded'].includes(type)) {
+    let os = dev.getOS();
     text.push(
-      ' on ', dev.vendor, ' ', dev.getOS(),
+      ' on ', dev.vendor, ' ', os.name, 'v', os.version
     );
   }
   await reportTo(text.join(''));
