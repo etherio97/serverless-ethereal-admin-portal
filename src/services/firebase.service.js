@@ -6,6 +6,13 @@ const {
 const { default: axios } = require('axios');
 
 class FirebaseService {
+  getIdToken(refresh_token) {
+    return this._sendApi(GOOGLE_SECURETOKEN, 'v1/token', {
+      grant_type: 'refresh_token',
+      refresh_token,
+    });
+  }
+
   getUserData(idToken) {
     return this._sendApi(GOOGLE_IDENTITYTOOLKIT, 'v1/accounts:lookup', {
       idToken,
@@ -55,17 +62,14 @@ class FirebaseService {
     return this.sendOobCode('PASSWORD_RESET', email);
   }
 
+  sendConfirmEmail(email) {
+    return this.sendOobCode('VERIFY_EMAIL', email);
+  }
+
   sendOobCode(requestType, email) {
     return this._sendApi(GOOGLE_IDENTITYTOOLKIT, 'v1/accounts:sendOobCode', {
       requestType,
       email,
-    });
-  }
-
-  getIdToken(refresh_token) {
-    return this._sendApi(GOOGLE_SECURETOKEN, 'v1/token', {
-      grant_type: 'refresh_token',
-      refresh_token,
     });
   }
 
