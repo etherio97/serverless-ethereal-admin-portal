@@ -15,10 +15,14 @@ class AuthGuard {
         });
       }
       try {
-        if (!verify(auth.idToken)) {
-          return res.status(400).json({ error: 'Invalid ID Token' });
+        if (verify(auth.idToken)) {
+          auth.currentUser = decode(auth.idToken);
+          if (Date.now() / 1000 > auth.currentUser.exp) {
+            return res.status(401).json({ error: 'token expired' });
+          }
+        } else {
+          return res.status(400).json({ error: 'invalid token' });
         }
-        auth.currentUser = decode(auth.idToken);
         // auth.currentUser = await service.getUserData(auth.idToken);
         next();
       } catch (e) {
