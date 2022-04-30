@@ -47,8 +47,9 @@ app.post('/firebase/token', async (req, res) => {
 
 app.post('/firebase/confirm-email', guard.canActivate(), async (req, res) => {
   try {
+    const { idToken } = req.auth;
     const { email } = req.body;
-    res.json(await service.sendConfirmEmail(email));
+    res.json(await service.sendConfirmEmail(email, idToken));
   } catch (e) {
     const response = e.response || {};
     res.status(response.status || 500);

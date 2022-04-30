@@ -59,17 +59,17 @@ class FirebaseService {
   }
 
   sendResetPassword(email) {
-    return this.sendOobCode('PASSWORD_RESET', email);
+    return this.sendOobCode('PASSWORD_RESET', { email });
   }
 
-  sendConfirmEmail(email) {
-    return this.sendOobCode('VERIFY_EMAIL', email);
+  sendConfirmEmail(email, idToken) {
+    return this.sendOobCode('VERIFY_EMAIL', { email, idToken });
   }
 
-  sendOobCode(requestType, email) {
+  sendOobCode(requestType, data = {}) {
     return this._sendApi(GOOGLE_IDENTITYTOOLKIT, 'v1/accounts:sendOobCode', {
       requestType,
-      email,
+      ...data,
     });
   }
 
