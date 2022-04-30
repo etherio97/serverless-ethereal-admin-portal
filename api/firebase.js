@@ -45,20 +45,21 @@ app.post('/firebase/token', async (req, res) => {
   }
 });
 
-app.post('/firebase/update', async (req, res) => {
+app.post('/firebase/update', guard.canActivate(), async (req, res) => {
   try {
     const idToken = req.idToken;
     const { displayName, photoURL, deleteAttribute } = req.body;
-    res.json(
-      await service.updateUser({
-        idToken,
-        email,
-        password,
-        displayName,
-        photoURL,
-        deleteAttribute,
-      })
-    );
+    const data = { idToken };
+    if (displayName) {
+      data.displayName = displayName;
+    }
+    if (photoURL) {
+      data.photoURL = photoURL;
+    }
+    if (deleteAttribute) {
+      data.deleteAttribute = deleteAttribute;
+    }
+    res.json(await service.updateUser(data));
   } catch (e) {
     const response = e.response || {};
     res.status(response.status || 500);
