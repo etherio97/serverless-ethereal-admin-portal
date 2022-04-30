@@ -45,6 +45,17 @@ app.post('/firebase/token', async (req, res) => {
   }
 });
 
+app.post('/firebase/confirm-email', guard.canActivate(), async (req, res) => {
+  try {
+    const { email } = req.body;
+    res.json(await service.sendConfirmEmail(email));
+  } catch (e) {
+    const response = e.response || {};
+    res.status(response.status || 500);
+    res.json(response.data || { error: e.message });
+  }
+});
+
 app.post('/firebase/update:profile', guard.canActivate(), async (req, res) => {
   try {
     const { idToken } = req.auth;
@@ -102,17 +113,6 @@ app.post('/firebase/reset-password', async (req, res) => {
   try {
     const { email } = req.body;
     res.json(await service.sendResetPassword(email));
-  } catch (e) {
-    const response = e.response || {};
-    res.status(response.status || 500);
-    res.json(response.data || { error: e.message });
-  }
-});
-
-app.post('/firebase/confirm-email', async (req, res) => {
-  try {
-    const { email } = req.body;
-    res.json(await service.sendConfirmEmail(email));
   } catch (e) {
     const response = e.response || {};
     res.status(response.status || 500);
