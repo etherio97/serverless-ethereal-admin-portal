@@ -5,19 +5,22 @@ class VercelService {
   getDomains() {
     return this._sendApi('GET', 'v4/domains');
   }
-  
+
   getProjects() {
     return this._sendApi('GET', 'v8/projects');
   }
-  
+
   getProject(projectId) {
     return this._sendApi('GET', ['v8/projects', projectId].join('/'));
   }
-  
+
   getProjectDomains(projectId) {
-    return this._sendApi('GET', ['v8/projects', projectId, 'domains'].join('/'));
+    return this._sendApi(
+      'GET',
+      ['v8/projects', projectId, 'domains'].join('/')
+    );
   }
-  
+
   _sendApi(method, path, data = null) {
     const headers = {
       Authorization: 'Bearer ' + VERCEL_SECRET,

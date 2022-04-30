@@ -86,7 +86,6 @@ app.put('/github/:user/:repo/workflows/:id/disable', async (req, res) => {
   }
 });
 
-
 app.post('/github/:user/:repo/workflows/:id/dispatches', async (req, res) => {
   try {
     const { ref, inputs } = req.body;

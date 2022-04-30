@@ -1,4 +1,4 @@
-const { 
+const {
   HEROKU_SECRET,
   VERCEL_SECRET,
   GITHUB_SECRET,
@@ -18,7 +18,7 @@ const CLOUDFLARE_API = 'https://api.cloudflare.com/client/v4';
 
 const GOOGLE_IDENTITYTOOLKIT = 'https://identitytoolkit.googleapis.com';
 
-const GOOGLE_SECURETOKEN = 'https://securetoken.googleapis.com'
+const GOOGLE_SECURETOKEN = 'https://securetoken.googleapis.com';
 
 module.exports = {
   HEROKU_SECRET,

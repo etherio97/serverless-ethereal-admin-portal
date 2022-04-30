@@ -7,8 +7,14 @@ const guard = require('../src/guards/auth.guard');
 app.post('/firebase/sign-in', async (req, res) => {
   try {
     const { email, password } = req.body;
-    const credential = await service.signInWithEmailAndPassword(email, password);
-    res.setHeader('set-cookie', `${COOKIE_NAME}=${credential.refreshToken}; Secure; HttpOnly`);
+    const credential = await service.signInWithEmailAndPassword(
+      email,
+      password
+    );
+    res.setHeader(
+      'set-cookie',
+      `${COOKIE_NAME}=${credential.refreshToken}; Secure; HttpOnly`
+    );
     res.json(credential);
   } catch (e) {
     const response = e.response || {};
@@ -41,7 +47,8 @@ app.post('/firebase/token', async (req, res) => {
 
 app.post('/firebase/update', async (req, res) => {
   try {
-    const { idToken, email, password, displayName, photoURL, deleteAttribute } = req.body;
+    const idToken = req.idToken;
+    const { displayName, photoURL, deleteAttribute } = req.body;
     res.json(
       await service.updateUser({
         idToken,
@@ -81,9 +88,11 @@ app.get('/firebase/slient-check', async (req, res) => {
   }
 });
 
-
 app.post('/firebase/logout', (req, res) => {
-  res.setHeader('set-cookie', `${COOKIE_NAME}=; Expires=Thu, Jan 01 1970 00:00:00 UTC; Secure; HttpOnly`);
+  res.setHeader(
+    'set-cookie',
+    `${COOKIE_NAME}=; Expires=Thu, Jan 01 1970 00:00:00 UTC; Secure; HttpOnly`
+  );
   res.redirect('/login.html');
   res.end();
 });

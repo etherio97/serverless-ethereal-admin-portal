@@ -31,50 +31,119 @@ class GithubService {
   }
 
   getRunners(user, repo, params = {}) {
-    return this._sendApi('GET', ['repos', user, repo, 'actions', 'runners'], null, params);
+    return this._sendApi(
+      'GET',
+      ['repos', user, repo, 'actions', 'runners'],
+      null,
+      params
+    );
   }
 
   getRunner(user, repo, id) {
-    return this._sendApi('GET', ['repos', user, repo, 'actions', 'runners', id]);
+    return this._sendApi('GET', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'runners',
+      id,
+    ]);
   }
 
   getArtifacts(user, repo, params = {}) {
-    return this._sendApi('GET', ['repos', user, repo, 'actions', 'artifacts'], null, params);
+    return this._sendApi(
+      'GET',
+      ['repos', user, repo, 'actions', 'artifacts'],
+      null,
+      params
+    );
   }
 
   getArtifact(user, repo, id) {
-    return this._sendApi('GET', ['repos', user, repo, 'actions', 'artifacts', id]);
+    return this._sendApi('GET', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'artifacts',
+      id,
+    ]);
   }
 
   getWorkflows(user, repo, params = {}) {
-    return this._sendApi('GET', ['repos', user, repo, 'actions', 'workflows'], null, params);
+    return this._sendApi(
+      'GET',
+      ['repos', user, repo, 'actions', 'workflows'],
+      null,
+      params
+    );
   }
 
   getWorkflow(user, repo, id) {
-    return this._sendApi('GET', ['repos', user, repo, 'actions', 'workflows', id]);
+    return this._sendApi('GET', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'workflows',
+      id,
+    ]);
   }
 
   disableWorkflow(user, repo, id) {
-    return this._sendApi('PUT', ['repos', user, repo, 'actions', 'workflows', id, 'disable']);
+    return this._sendApi('PUT', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'workflows',
+      id,
+      'disable',
+    ]);
   }
 
   enableWorkflow(user, repo, id) {
-    return this._sendApi('PUT', ['repos', user, repo, 'actions', 'workflows', id, 'enable']);
+    return this._sendApi('PUT', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'workflows',
+      id,
+      'enable',
+    ]);
   }
 
   dispatchWorkflow(user, repo, id, { ref, inputs }) {
-    return this._sendApi('POST', ['repos', user, repo, 'actions', 'workflows', id, 'dispatches'], {
-      ref,
-      inputs,
-    });
+    return this._sendApi(
+      'POST',
+      ['repos', user, repo, 'actions', 'workflows', id, 'dispatches'],
+      {
+        ref,
+        inputs,
+      }
+    );
   }
 
   getWorkflowUsage(user, repo, id) {
-    return this._sendApi('GET', ['repos', user, repo, 'actions', 'workflows', id, 'timing']);
+    return this._sendApi('GET', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'workflows',
+      id,
+      'timing',
+    ]);
   }
 
   getWorkflowRuns(user, repo, id, params = {}) {
-    return this._sendApi('GET', ['repos', user, repo, 'actions', 'workflows', id, 'runs'], null, params);
+    return this._sendApi(
+      'GET',
+      ['repos', user, repo, 'actions', 'workflows', id, 'runs'],
+      null,
+      params
+    );
   }
 
   getRun(user, repo, id) {
@@ -82,35 +151,98 @@ class GithubService {
   }
 
   deleteRun(user, repo, id) {
-    return this._sendApi('DELETE', ['repos', user, repo, 'actions', 'runs', id]);
+    return this._sendApi('DELETE', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'runs',
+      id,
+    ]);
   }
 
   cancelRun(user, repo, id) {
-    return this._sendApi('POST', ['repos', user, repo, 'actions', 'runs', id, 'cancel']);
+    return this._sendApi('POST', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'runs',
+      id,
+      'cancel',
+    ]);
   }
 
   getRunJobs(user, repo, id) {
-    return this._sendApi('GET', ['repos', user, repo, 'actions', 'runs', id, 'jobs']);
+    return this._sendApi('GET', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'runs',
+      id,
+      'jobs',
+    ]);
   }
 
   getRunLogs(user, repo, id) {
-    return this._sendApi('GET', ['repos', user, repo, 'actions', 'runs', id, 'logs']);
+    return this._sendApi('GET', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'runs',
+      id,
+      'logs',
+    ]);
   }
 
   deleteRunLogs(user, repo, id) {
-    return this._sendApi('DELETE', ['repos', user, repo, 'actions', 'runs', id, 'logs']);
+    return this._sendApi('DELETE', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'runs',
+      id,
+      'logs',
+    ]);
   }
 
   reRun(user, repo, id) {
-    return this._sendApi('POST', ['repos', user, repo, 'actions', 'runs', id, 'rerun']);
+    return this._sendApi('POST', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'runs',
+      id,
+      'rerun',
+    ]);
   }
 
   reRunFailedJobs(user, repo, id) {
-    return this._sendApi('POST', ['repos', user, repo, 'actions', 'runs', id, 'rerun-failed-jobs']);
+    return this._sendApi('POST', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'runs',
+      id,
+      'rerun-failed-jobs',
+    ]);
   }
 
   getRunUsage(user, repo, id) {
-    return this._sendApi('GET', ['repos', user, repo, 'actions', 'runs', id, 'timing']);
+    return this._sendApi('GET', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'runs',
+      id,
+      'timing',
+    ]);
   }
 
   getJob(user, repo, id) {
@@ -118,7 +250,15 @@ class GithubService {
   }
 
   getJobLogs(user, repo, id) {
-    return this._sendApi('GET', ['repos', user, repo, 'actions', 'jobs', id, 'logs']);
+    return this._sendApi('GET', [
+      'repos',
+      user,
+      repo,
+      'actions',
+      'jobs',
+      id,
+      'logs',
+    ]);
   }
 
   _sendApi(method, path = [], data = null, params = {}) {

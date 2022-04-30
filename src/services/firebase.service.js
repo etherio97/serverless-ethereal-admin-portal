@@ -1,4 +1,8 @@
-const { FIREBASE_API_KEY, GOOGLE_SECURETOKEN, GOOGLE_IDENTITYTOOLKIT } = require('../config');
+const {
+  FIREBASE_API_KEY,
+  GOOGLE_SECURETOKEN,
+  GOOGLE_IDENTITYTOOLKIT,
+} = require('../config');
 const { default: axios } = require('axios');
 
 class FirebaseService {
@@ -7,7 +11,7 @@ class FirebaseService {
       idToken,
     });
   }
-  
+
   signUpWithEmailAndPassword(email, password) {
     return this._sendApi(GOOGLE_IDENTITYTOOLKIT, 'v1/accounts:signUp', {
       email,
@@ -17,23 +21,38 @@ class FirebaseService {
   }
 
   signInWithEmailAndPassword(email, password) {
-    return this._sendApi(GOOGLE_IDENTITYTOOLKIT, 'v1/accounts:signInWithPassword', {
-      email,
-      password,
-      returnSecureToken: true,
-    });
+    return this._sendApi(
+      GOOGLE_IDENTITYTOOLKIT,
+      'v1/accounts:signInWithPassword',
+      {
+        email,
+        password,
+        returnSecureToken: true,
+      }
+    );
   }
 
-  updateUser({ idToken, email, password, displayName, photoURL, deleteAttribute }) {
-    return this._sendApi(GOOGLE_IDENTITYTOOLKIT, 'v1/accounts:signInWithPassword', {
-      idToken,
-      email,
-      password,
-      displayName,
-      photoURL,
-      deleteAttribute,
-      returnSecureToken: true,
-    });
+  updateUser({
+    idToken,
+    email,
+    password,
+    displayName,
+    photoURL,
+    deleteAttribute,
+  }) {
+    return this._sendApi(
+      GOOGLE_IDENTITYTOOLKIT,
+      'v1/accounts:signInWithPassword',
+      {
+        idToken,
+        email,
+        password,
+        displayName,
+        photoURL,
+        deleteAttribute,
+        returnSecureToken: true,
+      }
+    );
   }
 
   getIdToken(refresh_token) {

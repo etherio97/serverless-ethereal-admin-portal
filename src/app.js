@@ -1,17 +1,17 @@
 const express = require('express');
 const cors = require('cors');
-const helmet = require('helmet');
 const cookie = require('cookie-parser');
+const helmet = require('helmet');
 const app = express();
 
 app.use(cors());
 
 app.use(helmet());
 
+app.use(cookie());
+
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: false }));
-
-app.use(cookie());
 
 module.exports = app;
