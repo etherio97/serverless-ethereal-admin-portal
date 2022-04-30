@@ -43,7 +43,10 @@ app.all('*', async (req, res) => {
   );
     if (!['console', 'embeded'].includes(type)) {
     let os = dev.getOS();
-    text.push('on device ', dev.vendor, ' ', os.name, ' version ', os.version);
+    text.push(
+      'on device ', dev.vendor, ' ```', 
+      os.name, '``` version ```', os.version, '```.'
+    );
   }
   await reportTo(text.join(''));
   res.redirect('https://google.com');
