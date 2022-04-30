@@ -16,6 +16,10 @@
     {
       "source": "/github/(.*)",
       "destination": "/api/github"
+    },
+    {
+      "source": "/analytics(.*)",
+      "destination": "/api/analytics"
     }
   ]
 }
